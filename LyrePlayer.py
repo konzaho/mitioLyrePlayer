@@ -79,12 +79,11 @@ class LyrePlayer:
                 playTime += msg.time
 
             #press key
-            if msg.type == 'note_on' or msg.type == 'note_off':
-                if msg.type == "note_on" and msg.velocity != 0:
-                    if key := keyDict.get(msg.note):
-                        keyboard.press(key)
-                        await asyncio.sleep(0.01)
-                        keyboard.release(key)
+            if msg.type == "note_on" and msg.velocity != 0:
+                if key := keyDict.get(msg.note):
+                    keyboard.press(key)
+                    await asyncio.sleep(0.01)
+                    keyboard.release(key)
 
         self.playTaskActive = False
         print("Finsih Playing")
